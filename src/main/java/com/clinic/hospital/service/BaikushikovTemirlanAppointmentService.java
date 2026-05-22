@@ -87,4 +87,13 @@ public class BaikushikovTemirlanAppointmentService {
     }
 
     @Async
-    public CompletableFuture<List<BaikushikovTemirlanAppointmentDto>> getAppointmentsAsync(Lo
+    public CompletableFuture<List<BaikushikovTemirlanAppointmentDto>> getAppointmentsAsync(Long doctorId) {
+        log.info("Fetching appointments async for doctorId={}", doctorId);
+        List<BaikushikovTemirlanAppointmentDto> appointments = appointmentRepository
+                .findByDoctorId(doctorId)
+                .stream()
+                .map(appointmentMapper::toDto)
+                .collect(Collectors.toList());
+        return CompletableFuture.completedFuture(appointments);
+    }
+}
