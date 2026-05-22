@@ -38,7 +38,6 @@ public interface BaikushikovTemirlanDoctorRepository
 
     @Query("""
             SELECT d
-            FROM BaikushikovTemirlanDoctor d
             WHERE LOWER(d.firstName)
             LIKE LOWER(CONCAT('%', :name, '%'))
 
